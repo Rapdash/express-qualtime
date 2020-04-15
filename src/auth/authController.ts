@@ -1,6 +1,5 @@
 import * as bcrypt from "bcrypt";
-import { Request, Response, NextFunction} from "express";
-import * as jwt from "jsonwebtoken";
+import { Request, Response, NextFunction } from "express";
 import { getRepository } from "typeorm";
 
 import { EmailTakenError } from "../errors";
@@ -8,7 +7,11 @@ import { UserEntity } from "../user";
 import { RegisterUserDto } from "./RegisterUserDto";
 import { createJwt } from "./utils/createJwt";
 
-export const register = async (request: Request, response: Response, next: NextFunction) => {c
+export const register = async (
+  request: Request,
+  response: Response,
+  next: NextFunction
+) => {
   const userRepository = getRepository(UserEntity);
   const newUserData: RegisterUserDto = request.body;
   // if this throws, the router-level async handler will catch it.
@@ -20,12 +23,12 @@ export const register = async (request: Request, response: Response, next: NextF
   } else {
     const password_hash = await bcrypt.hash(newUserData.password, 10);
     const user = userRepository.create({
-      ...newUserData, 
-      password_hash
+      ...newUserData,
+      password_hash,
     });
     await userRepository.save(user);
     user.password_hash = undefined;
     const token = createJwt(user);
     response.send({ user, token });
   }
-}
+};
