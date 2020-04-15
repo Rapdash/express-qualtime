@@ -1,8 +1,8 @@
 import "reflect-metadata";
 import { config as configureEnv } from "dotenv";
 import { createConnection } from "typeorm"
-import express, { json } from "express";
-import logger from "morgan";
+import * as express from "express";
+import * as logger from "morgan";
 
 import { validateEnv, ormConfig } from "./utils";
 
@@ -19,7 +19,7 @@ const main = async () => {
   }
   const app = express();
   // Set up JSON parsing from req.body
-  app.use(json());
+  app.use(express.json());
   // Add logging via morgan
   app.use(logger("dev"));
 
