@@ -23,6 +23,9 @@ const main = async () => {
   // Add logging via morgan
   app.use(logger("dev"));
 
+  // Routers
+  app.use()
+
   app.listen(process.env.PORT || 1337, () => {
     console.info(`Server Started on ${process.env.PORT}`);
   });

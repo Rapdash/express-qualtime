@@ -5,6 +5,6 @@ import { register } from ".";
 import { validationMiddleware } from "../middleware";
 import { RegisterUserDto } from "./RegisterUserDto";
 
-export const router = Router();
+export const authRouter = Router();
 
-router.post('/register', validationMiddleware(RegisterUserDto), asyncHandler(register));
+authRouter.post('/register', validationMiddleware(RegisterUserDto), asyncHandler(register));
