@@ -25,6 +25,7 @@ export const register = async (request: Request, response: Response, next: NextF
     });
     await userRepository.save(user);
     user.password_hash = undefined;
-    const tokenData = createJwt(user);
+    const token = createJwt(user);
+    response.send({ user, token });
   }
 }
