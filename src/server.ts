@@ -5,6 +5,7 @@ import * as express from "express";
 import * as logger from "morgan";
 
 import { validateEnv, ormConfig } from "./config";
+import { authRouter } from "./auth";
 
 
 configureEnv();
@@ -24,7 +25,7 @@ const main = async () => {
   app.use(logger("dev"));
 
   // Routers
-  app.use()
+  app.use('/auth', authRouter);
 
   app.listen(process.env.PORT || 1337, () => {
     console.info(`Server Started on ${process.env.PORT}`);
