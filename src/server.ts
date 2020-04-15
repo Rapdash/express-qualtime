@@ -4,7 +4,7 @@ import { createConnection } from "typeorm"
 import * as express from "express";
 import * as logger from "morgan";
 
-import { validateEnv, ormConfig } from "./utils";
+import { validateEnv, ormConfig } from "./config";
 
 
 configureEnv();
